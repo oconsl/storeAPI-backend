@@ -1,8 +1,12 @@
 import express from 'express'
 import cors from 'cors'
-import dotEnv from 'dotenv'
+import dotenv from 'dotenv'
+dotenv.config()
+import Product from './models/product.js'
+import productRouter from './routes/productRouter.js'
+import errorHandler from './middleware/errorHandler.js'
 
-const { PORT = 3000 } = dotEnv.config()
+const { PORT = 3000 } = process.env
 
 const app = express()
 
@@ -14,10 +18,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 // Routes
-// app.use('/api', )
+app.use('/api', productRouter(Product))
 
 // Error handle middleware
-// app.use()
+app.use(errorHandler)
 
 // Server start
 app.listen(PORT, () => {
