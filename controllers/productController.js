@@ -49,4 +49,8 @@ const productController = (Product) => {
       next(err)
     }
   }
+
+  return { getProducts, postProduct, putProduct, deleteProduct }
 }
+
+export default productController
