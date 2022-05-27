@@ -1,16 +1,16 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-dotenv.config()
 import Product from './models/product.js'
 import productRouter from './routes/productRouter.js'
 import errorHandler from './middleware/errorHandler.js'
 
-const { PORT = 3000 } = process.env
-
-const app = express()
-
 // DB connection here
+import './database/db.js'
+
+dotenv.config()
+const { PORT = 3000 } = process.env
+const app = express()
 
 // Middleware
 app.use(cors())

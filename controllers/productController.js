@@ -18,7 +18,7 @@ const productController = (Product) => {
 
       await product.save()
 
-      res.status(201).json(product)
+      res.status(201).send({ message: 'Product created successfully' })
     } catch (err) {
       next(err)
     }
@@ -28,11 +28,11 @@ const productController = (Product) => {
   const putProduct = async (req, res, next) => {
     try {
       const { params, body } = req
-      const product = await Product.findByIdAndUpdate(params.id, body, {
+      await Product.findByIdAndUpdate(params.id, body, {
         new: true
       })
 
-      res.status(200).json(product)
+      res.status(200).json({ message: 'Product updated successfully' })
     } catch (err) {
       next(err)
     }
@@ -42,9 +42,13 @@ const productController = (Product) => {
   const deleteProduct = async (req, res, next) => {
     try {
       const { params } = req
-      const product = await Product.findByIdAndDelete(params.id)
+      const result = await Product.findByIdAndDelete(params.id)
 
-      res.status(200).json(product)
+      if (!result) {
+        throw new Error('Product not found')
+      }
+
+      res.status(200).send({ message: 'Product deleted successfully' })
     } catch (err) {
       next(err)
     }

@@ -9,7 +9,7 @@ const router = (Product) => {
 
   productRouter.route('/products').get(getProducts).post(postProduct)
 
-  productRouter.route('/products:id').put(putProduct).delete(deleteProduct)
+  productRouter.route('/products/:id').put(putProduct).delete(deleteProduct)
 
   return productRouter
 }

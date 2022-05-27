@@ -1,20 +1,25 @@
-import { Schema } from 'mongoose'
+import mongoose from 'mongoose'
 
-const productModel = new Schema({
+const { Schema } = mongoose
+
+const Product = new Schema({
   name: {
     type: String,
-    required: true,
-    match: /^[a-zA-Z0-9\s\u00f1\u00d1]+$/
+    required: [true, 'Product *name* is required'],
+    unique: true,
+    match: [
+      /^[0-9a-z\u00C0-\u00FF\s]+$/iu,
+      'The title must contain only letters and numbers.'
+    ]
   },
   description: {
     type: String,
-    required: true,
-    match: /^[a-zA-Z0-9\s\u00f1\u00d1]+$/
+    required: [true, 'Product *description* is required']
   },
   imageUrl: {
     type: String,
-    required: true
+    required: [true, 'Product *imageUrl* is required']
   }
 })
 
-export default productModel
+export default mongoose.model('Product', Product)
