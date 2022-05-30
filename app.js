@@ -9,7 +9,7 @@ import errorHandler from './middleware/errorHandler.js'
 import './database/db.js'
 
 dotenv.config()
-const { PORT = 3000 } = process.env
+const { PORT = 5000 } = process.env
 const app = express()
 
 // Middleware

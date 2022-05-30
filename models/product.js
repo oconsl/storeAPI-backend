@@ -16,6 +16,11 @@ const Product = new Schema({
     type: String,
     required: [true, 'Product *description* is required']
   },
+  price: {
+    type: Number,
+    required: [true, 'Product *price* is required'],
+    min: 0
+  },
   imageUrl: {
     type: String,
     required: [true, 'Product *imageUrl* is required']
