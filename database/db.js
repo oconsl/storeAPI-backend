@@ -4,10 +4,10 @@ import Product from '../models/product.js'
 import seed from './seed/seed.js'
 
 dotenv.config()
-const { DB_PORT, DB_HOST } = process.env
+const { DB_URI } = process.env
 
 mongoose
-  .connect(`mongodb://${DB_HOST}:${DB_PORT}/storeAPI`)
+  .connect(DB_URI)
   .then(() => {
     console.log('Connected to database.')
   })
